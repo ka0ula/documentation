@@ -1,0 +1,6929 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.sekoia.io/xdr/features/investigate/alerts/">
+      
+      
+        <link rel="prev" href="../../detect/anomaly/">
+      
+      
+        <link rel="next" href="../events/">
+      
+      <link rel="icon" href="../../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.1">
+    
+    
+      
+        <title>Alerts - SEKOIA.IO Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.3bd4f189.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/sekoiaio.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/lightgallery.min.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#alerts" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="SEKOIA.IO Documentation" class="md-header__button md-logo" aria-label="SEKOIA.IO Documentation" data-md-component="logo">
+      
+  <img src="../../../../assets/sekoiaio.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SEKOIA.IO Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Alerts
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SEKOIA-IO/documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../getting_started/" class="md-tabs__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../" class="md-tabs__link md-tabs__link--active">
+        SEKOIA.IO XDR
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../cti/" class="md-tabs__link">
+        SEKOIA.IO CTI
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tip/" class="md-tabs__link">
+        SEKOIA.IO TIP
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="SEKOIA.IO Documentation" class="md-nav__button md-logo" aria-label="SEKOIA.IO Documentation" data-md-component="logo">
+      
+  <img src="../../../../assets/sekoiaio.svg" alt="logo">
+
+    </a>
+    SEKOIA.IO Documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SEKOIA-IO/documentation" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Getting Started
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Getting Started" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Getting Started
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/join_community/" class="md-nav__link">
+        Join a community
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/create_account/" class="md-nav__link">
+        Create your account
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/account_security/" class="md-nav__link">
+        Set up account security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/create_community/" class="md-nav__link">
+        Create a community
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/invite_users/" class="md-nav__link">
+        Invite users to join
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/manage_users/" class="md-nav__link">
+        Manage users
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/roles_permissions/" class="md-nav__link">
+        Roles and permissions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/navigation/" class="md-nav__link">
+        Navigation on the platform
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/notifications/" class="md-nav__link">
+        Turn on notifications
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../getting_started/generate_api_keys/" class="md-nav__link">
+        Generate API Keys
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          SEKOIA.IO XDR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SEKOIA.IO XDR" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          SEKOIA.IO XDR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Features
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Features" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Features
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1" type="checkbox" id="__nav_2_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1">
+          Collect
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Collect" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Collect
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/ingestion_methods/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_2" type="checkbox" id="__nav_2_2_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_2">
+          Ingestion methods
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Ingestion methods" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_2_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          Ingestion methods
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/ingestion_methods/rsyslog/" class="md-nav__link">
+        Rsyslog
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/ingestion_methods/logstash/" class="md-nav__link">
+        Logstash
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/ingestion_methods/syslog-ng/" class="md-nav__link">
+        syslog-ng
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/ingestion_methods/graylog/" class="md-nav__link">
+        Graylog
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/ingestion_methods/https/" class="md-nav__link">
+        HTTPS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3" type="checkbox" id="__nav_2_2_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3">
+          Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Integrations" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_2_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/custom_format/" class="md-nav__link">
+        Custom Format
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_3" type="checkbox" id="__nav_2_2_1_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_3">
+          Application
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Application" data-md-level="5">
+        <label class="md-nav__title" for="__nav_2_2_1_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Application
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/alsid/" class="md-nav__link">
+        Alsid / Tenable.ad
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/apache/" class="md-nav__link">
+        Apache HTTP Server
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/bind/" class="md-nav__link">
+        BIND
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/haproxy/" class="md-nav__link">
+        HAProxy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/dhcpd/" class="md-nav__link">
+        ISC DHCP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/nginx/" class="md-nav__link">
+        Nginx
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/openssh/" class="md-nav__link">
+        OpenSSH
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/sekoiaio_activity_logs/" class="md-nav__link">
+        SEKOIA.IO activity logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/unbound/" class="md-nav__link">
+        Unbound
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/application/thehive.md" class="md-nav__link">
+        The Hive
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_4" type="checkbox" id="__nav_2_2_1_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_4">
+          Cloud and SaaS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cloud and SaaS" data-md-level="5">
+        <label class="md-nav__title" for="__nav_2_2_1_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Cloud and SaaS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_4_1" type="checkbox" id="__nav_2_2_1_3_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_4_1">
+          AWS
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="AWS" data-md-level="6">
+        <label class="md-nav__title" for="__nav_2_2_1_3_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          AWS
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/aws/aws_cloudtrail/" class="md-nav__link">
+        CloudTrail
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/aws/aws_flow_logs/" class="md-nav__link">
+        VPC Flow Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/aws/aws_s3_logs/" class="md-nav__link">
+        S3 for logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/aws/aws_waf/" class="md-nav__link">
+        WAF logs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_4_2" type="checkbox" id="__nav_2_2_1_3_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_4_2">
+          Cisco Umbrella
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cisco Umbrella" data-md-level="6">
+        <label class="md-nav__title" for="__nav_2_2_1_3_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Cisco Umbrella
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/cisco_umbrella/umbrella_proxy/" class="md-nav__link">
+        Cisco Umbrella Proxy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/cisco_umbrella/umbrella_ip/" class="md-nav__link">
+        Cisco Umbrella IP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/cisco_umbrella/umbrella_dns/" class="md-nav__link">
+        Cisco Umbrella DNS
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_4_3" type="checkbox" id="__nav_2_2_1_3_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_4_3">
+          Cloudflare
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Cloudflare" data-md-level="6">
+        <label class="md-nav__title" for="__nav_2_2_1_3_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Cloudflare
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/cloudflare/cloudflare-http-requests/" class="md-nav__link">
+        HTTP requests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/cloudflare/cloudflare-dns-logs/" class="md-nav__link">
+        DNS logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/cloudflare/cloudflare-firewall-events/" class="md-nav__link">
+        Firewall events
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/digital_shadows/" class="md-nav__link">
+        Digital Shadows SearchLight
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_4_5" type="checkbox" id="__nav_2_2_1_3_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_4_5">
+          Google Cloud
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Google Cloud" data-md-level="6">
+        <label class="md-nav__title" for="__nav_2_2_1_3_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Google Cloud
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/google/google_workspace/" class="md-nav__link">
+        Google Cloud Audit Logs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/google/google_kubernetes_engine/" class="md-nav__link">
+        Google Kubernetes Engine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/google/google_vpc_flow_logs/" class="md-nav__link">
+        Google Cloud VPC Flow Logs
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/imperva_waf/" class="md-nav__link">
+        Imperva WAF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_4_7" type="checkbox" id="__nav_2_2_1_3_4_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_4_7">
+          Microsoft Azure
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Microsoft Azure" data-md-level="6">
+        <label class="md-nav__title" for="__nav_2_2_1_3_4_7">
+          <span class="md-nav__icon md-icon"></span>
+          Microsoft Azure
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/azure/azure_ad/" class="md-nav__link">
+        Azure Active Directory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/azure/azure_front_door/" class="md-nav__link">
+        Azure Front Door
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/azure/azure_mysql/" class="md-nav__link">
+        Azure Database for MySQL
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/azure/azure_linux/" class="md-nav__link">
+        Azure Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/azure/azure_network_watcher/" class="md-nav__link">
+        Azure Network Watcher
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/azure/azure_windows/" class="md-nav__link">
+        Azure Windows
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_4_8" type="checkbox" id="__nav_2_2_1_3_4_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_4_8">
+          Microsoft Office 365
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Microsoft Office 365" data-md-level="6">
+        <label class="md-nav__title" for="__nav_2_2_1_3_4_8">
+          <span class="md-nav__icon md-icon"></span>
+          Microsoft Office 365
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/office365/o365/" class="md-nav__link">
+        Office365
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/office365/o365/" class="md-nav__link">
+        Microsoft Defender for Office 365
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/office365/message_trace/" class="md-nav__link">
+        Message trace
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/netskope_events/" class="md-nav__link">
+        Netskope Events
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/cloud_and_saas/okta_system_log/" class="md-nav__link">
+        Okta system log
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_5" type="checkbox" id="__nav_2_2_1_3_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_5">
+          Email
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Email" data-md-level="5">
+        <label class="md-nav__title" for="__nav_2_2_1_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Email
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/email/spamassassin/" class="md-nav__link">
+        Apache Spamassassin
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/email/fortimail/" class="md-nav__link">
+        Fortinet Fortimail
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/email/postfix/" class="md-nav__link">
+        Postfix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_5_4" type="checkbox" id="__nav_2_2_1_3_5_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_5_4">
+          Proofpoint
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Proofpoint" data-md-level="6">
+        <label class="md-nav__title" for="__nav_2_2_1_3_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Proofpoint
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/email/proofpoint_pod/" class="md-nav__link">
+        Proofpoint PoD
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/email/proofpoint_tap/" class="md-nav__link">
+        Proofpoint TAP
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/email/retarus_email_security/" class="md-nav__link">
+        Retarus Email Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/email/vade/" class="md-nav__link">
+        Vade for M365
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_6" type="checkbox" id="__nav_2_2_1_3_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_6">
+          Endpoint
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Endpoint" data-md-level="5">
+        <label class="md-nav__title" for="__nav_2_2_1_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Endpoint
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/auditbeat_linux/" class="md-nav__link">
+        Auditbeat Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/crowdstrike_falcon/" class="md-nav__link">
+        CrowdStrike Falcon
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/cybereason_malop/" class="md-nav__link">
+        Cybereason MalOp
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/cybereason_malop_activity/" class="md-nav__link">
+        Cybereason MalOp activity
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/harfanglab/" class="md-nav__link">
+        HarfangLab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/ibm_aix/" class="md-nav__link">
+        IBM AIX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/linux/" class="md-nav__link">
+        Linux
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/microsoft_defender_for_endpoints/" class="md-nav__link">
+        Microsoft Defender for Endpoints
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/microsoft_intune/" class="md-nav__link">
+        Microsoft Intune
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/panda_security_aether/" class="md-nav__link">
+        Panda Security Aether
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/sekoiaio/" class="md-nav__link">
+        SEKOIA.IO Endpoint Agent
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/sentinelone/" class="md-nav__link">
+        SentinelOne EDR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/sentinelone_deepvisibility/" class="md-nav__link">
+        SentinelOne Deep Visibility
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/sophos_edr/" class="md-nav__link">
+        Sophos EDR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/symantec_epp/" class="md-nav__link">
+        Symantec/Broadcom Endpoint Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/tanium/" class="md-nav__link">
+        Tanium
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/tehtris_edr/" class="md-nav__link">
+        TEHTRIS EDR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/trend_micro_deep_security/" class="md-nav__link">
+        Trend Micro Cloud One / Deep Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/windows/" class="md-nav__link">
+        Windows
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/endpoint/log_insight_windows/" class="md-nav__link">
+        Windows Log Insight
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_7" type="checkbox" id="__nav_2_2_1_3_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_7">
+          Network
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Network" data-md-level="5">
+        <label class="md-nav__title" for="__nav_2_2_1_3_7">
+          <span class="md-nav__icon md-icon"></span>
+          Network
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/checkpoint/" class="md-nav__link">
+        Check Point Firewall
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/cisco_asa/" class="md-nav__link">
+        Cisco Secure Firewall
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/cisco_wsa/" class="md-nav__link">
+        Cisco WSA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/gatewatcher_aioniq/" class="md-nav__link">
+        Gatewatcher AionIQ
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/f5-big-ip/" class="md-nav__link">
+        F5 BIG-IP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/forcepoint_web_gateway/" class="md-nav__link">
+        Forcepoint Secure Web Gateway
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_7_7" type="checkbox" id="__nav_2_2_1_3_7_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_7_7">
+          Fortinet
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Fortinet" data-md-level="6">
+        <label class="md-nav__title" for="__nav_2_2_1_3_7_7">
+          <span class="md-nav__icon md-icon"></span>
+          Fortinet
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/fortigate/" class="md-nav__link">
+        Fortinet Fortigate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/fortiproxy/" class="md-nav__link">
+        Fortinet Fortiproxy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/fortiweb/" class="md-nav__link">
+        Fortinet Fortiweb
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/infoblox_ddi/" class="md-nav__link">
+        Infoblox DDI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/skyhigh_secure_web_gateway/" class="md-nav__link">
+        Mc Afee/Skyhigh Secure Web Gateway
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/microsoft_always_on_vpn/" class="md-nav__link">
+        Microsoft Always On VPN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/netfilter/" class="md-nav__link">
+        NetFilter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/paloalto/" class="md-nav__link">
+        Palo Alto Next-Generation Firewall
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/pulse/" class="md-nav__link">
+        Pulse / Ivanti Secure Connect
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/rubycat_prove_it/" class="md-nav__link">
+        Rubycat PROVE IT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/sophos_fw/" class="md-nav__link">
+        Sophos Firewall
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/squid/" class="md-nav__link">
+        Squid
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/stormshield_network_security/" class="md-nav__link">
+        Stormshield SNS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/suricata/" class="md-nav__link">
+        Suricata
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/vectra/" class="md-nav__link">
+        Vectra Cognito Detect
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/wallix/" class="md-nav__link">
+        Wallix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/watchguard_firebox/" class="md-nav__link">
+        WatchGuard Firebox
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/network/zeek/" class="md-nav__link">
+        Zeek
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_1_3_8" type="checkbox" id="__nav_2_2_1_3_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_1_3_8">
+          Generic
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Generic" data-md-level="5">
+        <label class="md-nav__title" for="__nav_2_2_1_3_8">
+          <span class="md-nav__icon md-icon"></span>
+          Generic
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/generic/cef/" class="md-nav__link">
+        CEF
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/integrations/generic/raw/" class="md-nav__link">
+        Raw events
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/intakes/" class="md-nav__link">
+        Intakes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/entities/" class="md-nav__link">
+        Entities
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../collect/assets/" class="md-nav__link">
+        Assets
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_2" type="checkbox" id="__nav_2_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_2">
+          Detect
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Detect" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Detect
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../detect/rules_catalog/" class="md-nav__link">
+        Rules Catalog
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../detect/built_in_detection_rules/" class="md-nav__link">
+        Built-in Rules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../detect/sigma/" class="md-nav__link">
+        Sigma
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../detect/anomaly/" class="md-nav__link">
+        Anomaly Detection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_3" type="checkbox" id="__nav_2_2_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_3">
+          Investigate
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Investigate" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Investigate
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Alerts
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Alerts
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    Concepts
+  </a>
+  
+    <nav class="md-nav" aria-label="Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alert-status-and-lifecycle" class="md-nav__link">
+    Alert Status and lifecycle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alerts-workflow" class="md-nav__link">
+    Alerts Workflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-urgency" class="md-nav__link">
+    Alert Urgency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-similarity" class="md-nav__link">
+    Alert Similarity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-strategies" class="md-nav__link">
+    Similarity strategies
+  </a>
+  
+    <nav class="md-nav" aria-label="Similarity strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#similarity-by-rule" class="md-nav__link">
+    Similarity by rule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-by-event" class="md-nav__link">
+    Similarity by event
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-similarity" class="md-nav__link">
+    Default similarity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-and-alert-status" class="md-nav__link">
+    Similarity and alert status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-types-and-categories" class="md-nav__link">
+    Alert types and categories
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alerts-listing" class="md-nav__link">
+    Alerts listing
+  </a>
+  
+    <nav class="md-nav" aria-label="Alerts listing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-features" class="md-nav__link">
+    Main features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulk-actions" class="md-nav__link">
+    Bulk actions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alerts-table-columns" class="md-nav__link">
+    Alerts table columns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-details" class="md-nav__link">
+    Alert details
+  </a>
+  
+    <nav class="md-nav" aria-label="Alert details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#details" class="md-nav__link">
+    Details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    Tasks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similar-alerts" class="md-nav__link">
+    Similar alerts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    Events
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-an-alert-filter" class="md-nav__link">
+    Create an Alert Filter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-events-with-this-value" class="md-nav__link">
+    Search Events with this value
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-investigation" class="md-nav__link">
+    Graph Investigation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events/" class="md-nav__link">
+        Events
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cases/" class="md-nav__link">
+        Cases
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../events_query_language/" class="md-nav__link">
+        Events Query Language
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../querying_events/" class="md-nav__link">
+        Querying Events
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_4" type="checkbox" id="__nav_2_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_4">
+          Report
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Report" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Report
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../report/dashboards/" class="md-nav__link">
+        Dashboards
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_5" type="checkbox" id="__nav_2_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_5">
+          Automate
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Automate" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Automate
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/" class="md-nav__link">
+        Playbooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/navigate-playbooks/" class="md-nav__link">
+        Navigate playbooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/build-playbooks/" class="md-nav__link">
+        Build playbooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/triggers/" class="md-nav__link">
+        Triggers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/operators/" class="md-nav__link">
+        Operators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/actions/" class="md-nav__link">
+        Actions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2_5_7" type="checkbox" id="__nav_2_2_5_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2_5_7">
+          Actions Library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Actions Library" data-md-level="4">
+        <label class="md-nav__title" for="__nav_2_2_5_7">
+          <span class="md-nav__icon md-icon"></span>
+          Actions Library
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/aws/" class="md-nav__link">
+        AWS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/microsoft-azure/" class="md-nav__link">
+        Microsoft Azure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/azure-active-directory/" class="md-nav__link">
+        Azure Active Directory
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/binaryedge-s-api/" class="md-nav__link">
+        BinaryEdge's API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/censys/" class="md-nav__link">
+        Censys
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/certificate-transparency/" class="md-nav__link">
+        Certificate Transparency
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/cybereason/" class="md-nav__link">
+        Cybereason
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/crowdstrike-falcon/" class="md-nav__link">
+        CrowdStrike Falcon
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/detection-rules/" class="md-nav__link">
+        Detection Rules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/digital-shadows/" class="md-nav__link">
+        Digital Shadows
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/fileutils/" class="md-nav__link">
+        fileutils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/fortigate-firewalls/" class="md-nav__link">
+        Fortigate Firewalls
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/glimps/" class="md-nav__link">
+        GLIMPS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/google/" class="md-nav__link">
+        Google
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/http/" class="md-nav__link">
+        HTTP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/harfanglab/" class="md-nav__link">
+        HarfangLab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/iknowwhatyoudownload/" class="md-nav__link">
+        IKnowWhatYouDownload
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/iptoasn/" class="md-nav__link">
+        IPtoASN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/imperva/" class="md-nav__link">
+        Imperva
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/misp/" class="md-nav__link">
+        MISP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/mwdb/" class="md-nav__link">
+        MWDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/mandrill/" class="md-nav__link">
+        Mandrill
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/mattermost/" class="md-nav__link">
+        Mattermost
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/netskope/" class="md-nav__link">
+        Netskope
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/okta/" class="md-nav__link">
+        OKTA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/osint/" class="md-nav__link">
+        OSINT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/microsoft-office365/" class="md-nav__link">
+        Microsoft Office365
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/onyphe/" class="md-nav__link">
+        Onyphe
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/pagerduty/" class="md-nav__link">
+        PagerDuty
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/panda-security/" class="md-nav__link">
+        Panda Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/proofpoint/" class="md-nav__link">
+        Proofpoint
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/public-suffix/" class="md-nav__link">
+        Public Suffix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/rss/" class="md-nav__link">
+        RSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/riskiq/" class="md-nav__link">
+        RiskIQ
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/sekoia-io/" class="md-nav__link">
+        SEKOIA.IO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/stix/" class="md-nav__link">
+        STIX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/sentinel-one/" class="md-nav__link">
+        Sentinel One
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/servicenow/" class="md-nav__link">
+        ServiceNow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/shodan/" class="md-nav__link">
+        Shodan
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/skyhigh-security-secure-web-gateway-swg/" class="md-nav__link">
+        Skyhigh Security Secure Web Gateway (SWG)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/sophos/" class="md-nav__link">
+        Sophos
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/the-hive/" class="md-nav__link">
+        The Hive
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/tehtris/" class="md-nav__link">
+        Tehtris
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/tranco/" class="md-nav__link">
+        Tranco
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/triage/" class="md-nav__link">
+        Triage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/vade-secure/" class="md-nav__link">
+        Vade Secure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/virustotal/" class="md-nav__link">
+        VirusTotal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/library/whois/" class="md-nav__link">
+        Whois
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automate/debug-playbooks/" class="md-nav__link">
+        Debug playbooks
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Usecases
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Usecases" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Usecases
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../usecases/playbook/synchronize_alerts/" class="md-nav__link">
+        Synchronize Alerts with an external tool
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_4" type="checkbox" id="__nav_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_4">
+          FAQ
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="FAQ" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          FAQ
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQ/" class="md-nav__link">
+        General
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQ/Alerts_qa/" class="md-nav__link">
+        Alerts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQ/Events_qa/" class="md-nav__link">
+        Events
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQ/Rules_qa/" class="md-nav__link">
+        Rules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FAQ/SEKOIA_Endpoint_Agent/" class="md-nav__link">
+        SEKOIA.IO Endpoint agent
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5" type="checkbox" id="__nav_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5">
+          Develop
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Develop" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Develop
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_2" type="checkbox" id="__nav_2_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_2">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/guides/filtering/" class="md-nav__link">
+        Filtering
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_5_3" type="checkbox" id="__nav_2_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_5_3">
+          REST API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="REST API" data-md-level="3">
+        <label class="md-nav__title" for="__nav_2_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          REST API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/rest_api/community/" class="md-nav__link">
+        Authentication and Community
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/rest_api/dashboard/" class="md-nav__link">
+        Dashboard
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/rest_api/notification/" class="md-nav__link">
+        Notification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/rest_api/configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/rest_api/parser/" class="md-nav__link">
+        Parser
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/rest_api/alert/" class="md-nav__link">
+        Alert
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/rest_api/assets/" class="md-nav__link">
+        Assets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/rest_api/playbooks/" class="md-nav__link">
+        Playbooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../develop/rest_api/telemetry/" class="md-nav__link">
+        Telemetry
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          SEKOIA.IO CTI
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SEKOIA.IO CTI" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          SEKOIA.IO CTI
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Features
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Features" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Features
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/data_model/" class="md-nav__link">
+        Data Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_2" type="checkbox" id="__nav_3_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_2">
+          Consume
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Consume" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Consume
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/consume/intelligence/" class="md-nav__link">
+        Intelligence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/consume/observables/" class="md-nav__link">
+        Observables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/consume/feeds/" class="md-nav__link">
+        Outgoing Feeds
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/consume/graph_explorations/" class="md-nav__link">
+        Graph Explorations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/consume/enrichers/" class="md-nav__link">
+        Enrichers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/consume/export/" class="md-nav__link">
+        Export
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_3" type="checkbox" id="__nav_3_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_3">
+          Monitor
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Monitor" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Monitor
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/monitor/dashboard/" class="md-nav__link">
+        Dashboards
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2_4" type="checkbox" id="__nav_3_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2_4">
+          External Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="External Integrations" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          External Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/taxii/" class="md-nav__link">
+        TAXII
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/thehive/" class="md-nav__link">
+        Cortex Analyzer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/misp/" class="md-nav__link">
+        MISP Feed
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/microsoft-sentinel/" class="md-nav__link">
+        Microsoft Sentinel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/opencti/" class="md-nav__link">
+        OpenCTI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/splunk/" class="md-nav__link">
+        Splunk
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/anomali/" class="md-nav__link">
+        Anomali ThreatStream
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/features/integrations/paloalto_xsoar/" class="md-nav__link">
+        PaloAlto Cortex XSOAR
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Develop
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Develop" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Develop
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_2" type="checkbox" id="__nav_3_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_2">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/guides/filtering/" class="md-nav__link">
+        Filtering
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_3" type="checkbox" id="__nav_3_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_3">
+          REST API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="REST API" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          REST API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/rest_api/community/" class="md-nav__link">
+        Authentication and Community
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/rest_api/intelligence/" class="md-nav__link">
+        Intelligence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/rest_api/enrichments/" class="md-nav__link">
+        Enrichment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/rest_api/telemetry/" class="md-nav__link">
+        Telemetry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/rest_api/dashboard/" class="md-nav__link">
+        Dashboard
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/rest_api/notification/" class="md-nav__link">
+        Notification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/rest_api/playbooks/" class="md-nav__link">
+        Playbooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../cti/develop/rest_api/edl-gateway/" class="md-nav__link">
+        External Dynamic List
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          SEKOIA.IO TIP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SEKOIA.IO TIP" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          SEKOIA.IO TIP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Features
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Features" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Features
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/data_model/" class="md-nav__link">
+        Data Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_2" type="checkbox" id="__nav_4_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_2">
+          Consume
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Consume" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Consume
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/consume/intelligence/" class="md-nav__link">
+        Intelligence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/consume/observables/" class="md-nav__link">
+        Observables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/consume/feeds/" class="md-nav__link">
+        Outgoing Feeds
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/consume/graph_explorations/" class="md-nav__link">
+        Graph Explorations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/consume/enrichers/" class="md-nav__link">
+        Enrichers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/consume/export/" class="md-nav__link">
+        Export
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_3" type="checkbox" id="__nav_4_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_3">
+          Produce and investigate
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Produce and investigate" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Produce and investigate
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/produce/content_proposals/" class="md-nav__link">
+        Content Proposals
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/produce/incoming_feeds/" class="md-nav__link">
+        Incoming Feeds
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/produce/warning_rules/" class="md-nav__link">
+        Warning Rules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/produce/expiration_rules/" class="md-nav__link">
+        Expiration Rules
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_4" type="checkbox" id="__nav_4_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_4">
+          Monitor
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Monitor" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Monitor
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/monitor/dashboard/" class="md-nav__link">
+        Dashboards
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_5" type="checkbox" id="__nav_4_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_5">
+          External Integrations
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="External Integrations" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          External Integrations
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/integrations/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/integrations/api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/integrations/taxii/" class="md-nav__link">
+        TAXII
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/integrations/thehive/" class="md-nav__link">
+        Cortex Analyzer
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/integrations/misp/" class="md-nav__link">
+        MISP Feed
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/integrations/microsoft-sentinel/" class="md-nav__link">
+        Microsoft Sentinel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/integrations/opencti/" class="md-nav__link">
+        OpenCTI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/integrations/splunk/" class="md-nav__link">
+        Splunk
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/integrations/palolto_xsoar.md" class="md-nav__link">
+        PaloAlto Cortex XSOAR
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6" type="checkbox" id="__nav_4_2_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_6">
+          Automate
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Automate" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Automate
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/" class="md-nav__link">
+        Playbooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/navigate-playbooks/" class="md-nav__link">
+        Navigate playbooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/build-playbooks/" class="md-nav__link">
+        Build playbooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/triggers/" class="md-nav__link">
+        Triggers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/operators/" class="md-nav__link">
+        Operators
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/actions/" class="md-nav__link">
+        Actions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2_6_7" type="checkbox" id="__nav_4_2_6_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2_6_7">
+          Actions Library
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Actions Library" data-md-level="4">
+        <label class="md-nav__title" for="__nav_4_2_6_7">
+          <span class="md-nav__icon md-icon"></span>
+          Actions Library
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/aws/" class="md-nav__link">
+        AWS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/binaryedge-s-api/" class="md-nav__link">
+        BinaryEdge's API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/censys/" class="md-nav__link">
+        Censys
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/certificate-transparency/" class="md-nav__link">
+        Certificate Transparency
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/detection-rules/" class="md-nav__link">
+        Detection Rules
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/digital-shadows/" class="md-nav__link">
+        Digital Shadows
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/fileutils/" class="md-nav__link">
+        fileutils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/fortigate-firewalls/" class="md-nav__link">
+        Fortigate Firewalls
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/git/" class="md-nav__link">
+        Git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/glimps/" class="md-nav__link">
+        GLIMPS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/google/" class="md-nav__link">
+        Google
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/http/" class="md-nav__link">
+        HTTP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/harfanglab/" class="md-nav__link">
+        HarfangLab
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/iknowwhatyoudownload/" class="md-nav__link">
+        IKnowWhatYouDownload
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/iptoasn/" class="md-nav__link">
+        IPtoASN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/imperva/" class="md-nav__link">
+        Imperva
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/misp/" class="md-nav__link">
+        MISP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/mwdb/" class="md-nav__link">
+        MWDB
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/mandrill/" class="md-nav__link">
+        Mandrill
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/mattermost/" class="md-nav__link">
+        Mattermost
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/osint/" class="md-nav__link">
+        OSINT
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/onyphe/" class="md-nav__link">
+        Onyphe
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/pagerduty/" class="md-nav__link">
+        PagerDuty
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/panda-security/" class="md-nav__link">
+        Panda Security
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/public-suffix/" class="md-nav__link">
+        Public Suffix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/rss/" class="md-nav__link">
+        RSS
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/riskiq/" class="md-nav__link">
+        RiskIQ
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/sekoia-io/" class="md-nav__link">
+        SEKOIA.IO
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/stix/" class="md-nav__link">
+        STIX
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/servicenow/" class="md-nav__link">
+        ServiceNow
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/shodan/" class="md-nav__link">
+        Shodan
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/the-hive/" class="md-nav__link">
+        The Hive
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/tranco/" class="md-nav__link">
+        Tranco
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/triage/" class="md-nav__link">
+        Triage
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/vade-secure/" class="md-nav__link">
+        Vade Secure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/virustotal/" class="md-nav__link">
+        VirusTotal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/features/automate/library/whois/" class="md-nav__link">
+        Whois
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Develop
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Develop" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Develop
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/develop/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_2" type="checkbox" id="__nav_4_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_2">
+          Guides
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Guides" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Guides
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/develop/guides/filtering/" class="md-nav__link">
+        Filtering
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3_3" type="checkbox" id="__nav_4_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3_3">
+          REST API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="REST API" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          REST API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/develop/rest_api/community/" class="md-nav__link">
+        Authentication and Community
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/develop/rest_api/intelligence/" class="md-nav__link">
+        Intelligence
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/develop/rest_api/enrichments/" class="md-nav__link">
+        Enrichment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/develop/rest_api/dashboard/" class="md-nav__link">
+        Dashboard
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/develop/rest_api/notification/" class="md-nav__link">
+        Notification
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tip/develop/rest_api/playbooks/" class="md-nav__link">
+        Playbooks
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    Concepts
+  </a>
+  
+    <nav class="md-nav" aria-label="Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alert-status-and-lifecycle" class="md-nav__link">
+    Alert Status and lifecycle
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alerts-workflow" class="md-nav__link">
+    Alerts Workflow
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-urgency" class="md-nav__link">
+    Alert Urgency
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-similarity" class="md-nav__link">
+    Alert Similarity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-strategies" class="md-nav__link">
+    Similarity strategies
+  </a>
+  
+    <nav class="md-nav" aria-label="Similarity strategies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#similarity-by-rule" class="md-nav__link">
+    Similarity by rule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-by-event" class="md-nav__link">
+    Similarity by event
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#default-similarity" class="md-nav__link">
+    Default similarity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity-and-alert-status" class="md-nav__link">
+    Similarity and alert status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-types-and-categories" class="md-nav__link">
+    Alert types and categories
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alerts-listing" class="md-nav__link">
+    Alerts listing
+  </a>
+  
+    <nav class="md-nav" aria-label="Alerts listing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#main-features" class="md-nav__link">
+    Main features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bulk-actions" class="md-nav__link">
+    Bulk actions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alerts-table-columns" class="md-nav__link">
+    Alerts table columns
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alert-details" class="md-nav__link">
+    Alert details
+  </a>
+  
+    <nav class="md-nav" aria-label="Alert details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#details" class="md-nav__link">
+    Details
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    Tasks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similar-alerts" class="md-nav__link">
+    Similar alerts
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    Events
+  </a>
+  
+    <nav class="md-nav" aria-label="Events">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-an-alert-filter" class="md-nav__link">
+    Create an Alert Filter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#search-events-with-this-value" class="md-nav__link">
+    Search Events with this value
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-investigation" class="md-nav__link">
+    Graph Investigation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="alerts">Alerts</h1>
+<p>Alerts are created by the Operations Center when an event matches a rule and a threat is detected.</p>
+<h2 id="concepts">Concepts</h2>
+<h3 id="alert-status-and-lifecycle">Alert Status and lifecycle</h3>
+<p>An alert can have five possible statuses:</p>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+<th>Possible actions to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pending</strong></td>
+<td>As soon as an alert is triggered, it is placed in 'Pending' status. If the generation mode for this alert is 'Automatic', this status changes automatically to 'Ongoing'.</td>
+<td>Acknowledge, Reject, Validate</td>
+</tr>
+<tr>
+<td><strong>Acknowledged</strong></td>
+<td>This status is used when an analysis is ongoing. If the analyst can decide if an alert is a true or a false positive quickly, this status can be optional, time to acknowledge used in statistics will be set to time to change to Ongoing or Rejected status.</td>
+<td>Validate, Reject</td>
+</tr>
+<tr>
+<td><strong>Ongoing</strong></td>
+<td>Alert is considered as true positive and countermeasures have not yet been applied. This status is the first one seen in case of automatic mode.</td>
+<td>Close (countermeasures have been applied, no more alert), Reject (after more analysis, this alert was a false positive)</td>
+</tr>
+<tr>
+<td><strong>Closed</strong></td>
+<td>All necessary actions have been applied to the alert. This status is a final status.</td>
+<td>No action accepted</td>
+</tr>
+<tr>
+<td><strong>Rejected</strong></td>
+<td>The alert was a false positive. This status is a final status.</td>
+<td>No action accepted</td>
+</tr>
+</tbody>
+</table>
+<h3 id="alerts-workflow">Alerts Workflow</h3>
+<p><img alt="alert_workflow" src="/assets/operation_center/alerts/alert_workflow.png" style="max-width:100%" /></p>
+<h3 id="alert-urgency">Alert Urgency</h3>
+<p>The Urgency is a number used to give a score to the risk associated with a specific alert.
+It is calculated from the severity of a rule and the criticality of assets related to the alert.
+This gives a value between 1 (very low risk) and 100 (very high risk).</p>
+<p>The urgency of an alert is calculated using the following formula:
+<code>Alert urgency = (Severity of the rule + Criticality of the asset) / 2</code></p>
+<p>The urgency can have two different representations on the interface: a numerical and a textual representation.</p>
+<table>
+<thead>
+<tr>
+<th>Display</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low</td>
+<td>[0-50[</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>[50-75[</td>
+</tr>
+<tr>
+<td>High</td>
+<td>[75-100]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="alert-similarity">Alert Similarity</h3>
+<p>Alert similarity (Occurence) is the process by which we collect similar events in the same alert. 
+The information is available in the Alerts table → Column <code>Occurrence</code>. </p>
+<p><strong>Example</strong></p>
+<p>If an alert has 24 occurrences, it means that it contains 24 events that were classified as similar and put in the same alert. </p>
+<h3 id="similarity-strategies">Similarity strategies</h3>
+<p>Alerts are considered similar if a list of fields defined by the similarity strategy have the same values for all events. Some fields may also be grouped together to specify that their values may be swapped.
+There are three possibilities to define the similarity strategy to use. By order:  </p>
+<ol>
+<li><a href="#similarity-by-rule">Similarity is forced by the rule</a></li>
+<li><a href="#similarity-by-event">Similarity is forced by event</a></li>
+<li><a href="#default-similarity">Similarity by default</a></li>
+</ol>
+<h4 id="similarity-by-rule">Similarity by rule</h4>
+<p>Rules written by SEKOIA.IO and available in the Rules Catalog may define specific similarity strategies.</p>
+<p>Similarity strategies by rule are not shown and cannot be edited on the interface. The API may be used to access this parameter.</p>
+<h4 id="similarity-by-event">Similarity by event</h4>
+<p>Depending on the events that triggered an alert, SEKOIA.IO applies a similarity logic. This logic follows SEKOIA.IO guidelines and cannot be edited by users directly.</p>
+<p>If the event matches one of the conditions listed below, the associated similarity strategy is used.</p>
+<table>
+<thead>
+<tr>
+<th>Conditions</th>
+<th>Similarity Strategy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>If <code>dns.question.name</code> exists</td>
+<td>[<code>sekoiaio.entity.uuid</code>, [<code>source.ip</code>, <code>destination.ip</code>], <code>dns.question.name</code>]</td>
+</tr>
+<tr>
+<td>If <code>event.dialect</code> is Windows and <code>user.name</code> exists</td>
+<td>[<code>sekoiaio.entity.uuid</code>, <code>user.name</code>, <code>user.id</code>]</td>
+</tr>
+<tr>
+<td>If <code>event.dialect</code> is Azure Windows and <code>process.name</code> exists</td>
+<td>[<code>sekoiaio.entity.uuid</code>, <code>process.name</code>, <code>process.command_line</code>]</td>
+</tr>
+<tr>
+<td>If <code>event.dialect</code> is Azure Active Directory and <code>user.name</code> exists and <code>action.name</code> exists</td>
+<td>[<code>sekoiaio.entity.uuid</code>, <code>user.name</code>, <code>user.id</code>, <code>action.name</code>, <code>action.type</code>, <code>action.outcome</code>]</td>
+</tr>
+<tr>
+<td>If <code>event.dialect</code> is Azure Active Directory and <code>action.name</code> exists</td>
+<td>[<code>sekoiaio.entity.uuid</code>, <code>action.name</code>, <code>action.type</code>, <code>action.outcome</code>]</td>
+</tr>
+<tr>
+<td>If <code>event.dialect</code> is postfix</td>
+<td>[<code>sekoiaio.entity.uuid</code>, <code>email.from.address</code>]</td>
+</tr>
+<tr>
+<td>If <code>file.hash.sha256</code>matches the rule</td>
+<td>[<code>sekoiaio.entity.uuid</code>, <code>file.hash.sha256</code>]</td>
+</tr>
+<tr>
+<td>If <code>file.hash.sha1</code> matches the rule</td>
+<td>[<code>sekoiaio.entity.uuid</code>, <code>file.hash.sha1</code>]</td>
+</tr>
+<tr>
+<td>If <code>file.hash.md5</code>matches the rule</td>
+<td>[<code>sekoiaio.entity.uuid</code>, <code>file.hash.md5</code>]</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In case similarity forced by your events does not answer your needs, feel free to contact us at support@sekoia.io.</p>
+</div>
+<h4 id="default-similarity">Default similarity</h4>
+<p>If there is no similarity forced by the rule or by the event, you can rely on SEKOIA.IO default similarity formula: same <code>entity</code>, same <code>source.ip</code> and <code>destination.ip</code>. </p>
+<p><code>source.ip</code> and <code>destination.ip</code> can be used interchangeably. </p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>When there is no data due to parsing issues, alert similarity is not shown except when there is a NULL propriety in <code>source.ip</code> or <code>destination.ip</code>. When the <code>source.ip</code> and the <code>destination.ip</code> are empty, we might use the value NULL as a similarity basis.</p>
+</div>
+<h4 id="similarity-and-alert-status">Similarity and alert status</h4>
+<p>As long as there is an existing similar alert with status <strong>Pending</strong>, <strong>Acknowledged</strong> or <strong>Ongoing</strong>, new matches are added to the alert as occurrences.</p>
+<p>If only <strong>Closed</strong> or <strong>Rejected</strong> alerts are similar, a new alert is created. <strong>Closed</strong> and <strong>Rejected</strong> similar alerts are listed inside the <a href="#similar-alerts">Similar Alerts</a> tab.</p>
+<h2 id="alert-types-and-categories">Alert types and categories</h2>
+<p>The Alert type is associated with the rule that triggered it but can be changed with the value associated to specific indicators in case of CTI rules.
+The Alert type is defined according to a custom set of values derived from the Reference Incident Classification Taxonomy of ENISA.
+<img alt="alert_categories" src="/assets/operation_center/alerts/alert_categories.png" style="max-width:100%" /></p>
+<h2 id="alerts-listing">Alerts listing</h2>
+<p>When you first connect to <a href="http://app.sekoia.io/">SEKOIA.IO</a>, the alerts list will display the last 10 alerts raised on your community ordered by <code>Date</code>.
+<img alt="alert_listing" src="/assets/operation_center/alerts/alert_listing.png" style="max-width:100%" /></p>
+<h3 id="main-features">Main features</h3>
+<p>From the left to the right, 7 features are available on the top screen:</p>
+<ul>
+<li>A <code>refresh</code> button to show the newly generated alerts</li>
+<li>Two tabs: <code>All</code> to list all alerts and <code>New today</code> to list today’s alerts</li>
+<li>A <code>show/hide</code> columns button that lets you display fields you’re interested in. You can select or deselect columns but also drag and drop them depending on the order you need</li>
+<li>Filters that let you display alerts by order of <code>Most Frequent</code>, <code>Recently Updated</code>, <code>Recently Created</code> or <code>Most Urgent</code></li>
+<li>Filters that let you display alerts by <code>status</code>: Pending, Acknowledged, Ongoing, Rejected or Closed</li>
+<li>Advanced filters capacities: Date range, Entity, Urgency, Type, Rule, Asset, Threats, Source and Target</li>
+<li>Direct links to the <a href="https://docs.sekoia.io/cti/">Intelligence Center</a> by clicking on the listed <code>related threats</code></li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To list only alerts raised by the same rule, just hover over the rule and click on the <code>+</code> next to the rule's name; it will automatically add the rule as a filter.  </p>
+</div>
+<h3 id="bulk-actions">Bulk actions</h3>
+<p>On the main alert listing, it is possible to treat alerts faster. With the bulk actions, users can, in one hand, change many alerts' statuses at the same time, and on the other hand, leave comments to explain their decision and provide more context. </p>
+<p><img align="right" alt="bulk-action" src="/assets/operation_center/alerts/bulk-action.png" /></p>
+<p>To change statuses in bulk, you have to: </p>
+<ul>
+<li>Apply filters to alerts listing if needed</li>
+<li>Select some or all alerts in the list using the checkbox in the upper left of the table. A counter will let you know how many alerts are selected </li>
+<li>Choose the action you want to apply to all these alerts </li>
+<li>Click on <code>Apply</code></li>
+</ul>
+<p>A modal with the total number of alerts that can be edited is shown. Some alerts will not be included if their status cannot be changed to the status chosen by the user. Learn more about alert status change in the <a href="#alerts-workflow">Alerts workflow</a> section. </p>
+<ul>
+<li>Leave a comment explaining your decision and save your changes. </li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is recommended to leave a comment to provide more context to the status change but it's not mandatory. </p>
+</div>
+<h3 id="alerts-table-columns">Alerts table columns</h3>
+<p>By default, the alert listing displays the following columns:</p>
+<ul>
+<li>A <code>Selector</code> so you can perform an action on multiple alerts on the same time</li>
+<li>A <code>Similarity</code> counter, showing the alert was raised multiple time for the same reason, rather than simply adding a new line on the alert feed</li>
+<li>Alert creation <code>Date</code></li>
+<li>Alert <code>Status</code>. When hovering over the icon, a frame indicates the status modification date and who modified it</li>
+<li>The <code>Entity</code> to which the alert corresponds</li>
+<li><code>Urgency</code> of the alert, between 0 and 100, 100 being the highest</li>
+<li>The <code>Type</code> of alert</li>
+<li>The <code>Name</code> of the rule which triggered the alert</li>
+<li>The <code>Threats</code> related to the alert in termes of malicious activities, related tools, Campaign...</li>
+<li>A <code>first seen</code> and <code>last seen</code> date</li>
+<li>The <code>ID</code> and the <code>UUID</code> of the alert</li>
+<li>The <code>source</code> and <code>target</code>of the alert</li>
+</ul>
+<blockquote>
+<p>Your custom configuration will be saved in order to allow you to keep your selected filters when you come back to this page.</p>
+<p>For Partners, an additional filter is available in order to display all or a subset of alerts related to their managed communities.</p>
+<p>The alert listing also displays the Communities related to the alerts.</p>
+</blockquote>
+<h2 id="alert-details">Alert details</h2>
+<p>The Alert Details page can be reached by clicking on any alert in the Alert Listing. This will provide you with a new view for quick and deep investigations.</p>
+<p><img alt="alert_details" src="/assets/operation_center/alerts/alert-detail-layout.png" style="max-width:100%" /></p>
+<p>The Alert Details header contains the <code>urgency</code>, the <code>name</code> and the <code>short ID</code> of the alert, as well as the following actions:</p>
+<ul>
+<li><code>Alert Status</code>: can be used to move the Alert through its lifecycle</li>
+<li>Add to <code>Case</code>: add the alert to a case to gather all the needed information for an extensive investigation</li>
+<li><code>Playbooks</code>: display the list of on-demand playbooks and be able to trigger them</li>
+</ul>
+<p>The different sections of the page are then separated into 4 tabs: <code>Details</code>, <code>Tasks</code>, <code>Events</code> and <code>Graph Investigation</code>.</p>
+<h3 id="details">Details</h3>
+<p>The Details tab contains the information needed to understand what the alert is about and why it was raised. It’s split into two columns.</p>
+<p>The first column contains the following items:</p>
+<ul>
+<li>The detailed alert urgency (can be edited on hover)</li>
+<li>The alert type</li>
+<li>The impacted assets</li>
+<li>The impacted entity</li>
+<li>Related cases (cases in which this alert appears)</li>
+<li>The Kill Chain phase (can be edited on hover)</li>
+<li>Details about the rule that was triggered</li>
+<li>Details from the Intelligence Center about all threats linked to this alert</li>
+</ul>
+<p>The second column is the <code>timeline</code>. It contains all items that constitute the history of the alert:</p>
+<ul>
+<li>Alert status changes</li>
+<li>Comments (that can be added with the button at the top right)</li>
+<li>Events represented by their Smart Descriptions</li>
+<li>Completed Tasks</li>
+<li>Rejected Tasks</li>
+</ul>
+<p>It is possible to filter the timeline to display only items of a certain type.</p>
+<h3 id="tasks">Tasks</h3>
+<p>The Tasks tabs lists tasks and subtasks that are associated with the alert.
+<img alt="tasks" src="/assets/operation_center/alerts/alert-tasks.png" style="max-width:100%" /></p>
+<p>Buttons are available to complete or reject tasks. When completing a task, you are informing the Operations Center that you have undertaken the corresponding action on your perimeter. The urgency of the alert will thereby decrease, as well as the risk indicator.</p>
+<p>Subtasks can have an OpenC2 specification which can be displayed by clicking on the automation icon.</p>
+<h3 id="similar-alerts">Similar alerts</h3>
+<p>Operators need as much information as possible to determine what to do with a new alert. With the similar alerts tab, SEKOIA.IO has that information in store and is able to display it to the operator in a comprehensive and useful way, while also providing recommendations based on the previous operator decisions.</p>
+<p>To find similar alerts linked to a specific alert, you will need to access the detail page dedicated to this alert. The similar alerts tab will be automatically loaded next to the <a href="#details">Details</a>, <a href="#tasks">Tasks</a>, <a href="#graph-investigation">Graph Investigation</a> and <a href="#events">Events</a> tabs.</p>
+<p><img alt="similar_alerts" src="/assets/operation_center/alerts/similar_alerts.png" style="max-width:100%" /></p>
+<p>To help you compare between alerts, you can choose which columns you want to display in the table by clicking on the icon in the upper right of the table.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can click on the alerts to see the full details of a similar alert or open several of them in new tabs to compare them more easily.</p>
+</div>
+<p>The similar alerts tab is divided into two parts:</p>
+<ul>
+<li><strong>The suggestion message:</strong> In a callout, you’ll find a text that reminds you of the status of the majority of previous similar alerts. This message suggests you change the alert status based on the previous alerts. You can also find an action button to apply the status on your alert (except for Closed alerts).</li>
+<li><strong>The similar alerts table:</strong> It gathers all the similar alerts that previously occurred. The columns of this table can be customized to help you investigate the similarities between alerts.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please note that if SEKOIA.IO doesn’t find previous similar alerts, a message will be displayed to notify you.</p>
+</div>
+<h3 id="events">Events</h3>
+<p>The Events tab lists the events that raised the alert in a display similar to the <a href="../events/">Events page</a>.</p>
+<p><img alt="events" src="/assets/operation_center/alerts/alert-events.png" style="max-width:100%" /></p>
+<p>When interacting with individual values, it is possible to:</p>
+<ul>
+<li>Filter for: only applies to the events that raised the alert</li>
+<li>Filter out: only applies to the events that raised the alert</li>
+<li><a href="#search-events-with-this-value">Search events with this value</a></li>
+</ul>
+<p>The <code>Value Selection</code> mode can be toggled with the button at the top right of the event list in order to select multiple values in displayed events. The selected values can then be used to:</p>
+<ul>
+<li><a href="#create-an-alert-filter">Create an Alert Filter</a></li>
+<li><a href="#search-events-with-this-value">Search events with these values</a></li>
+</ul>
+<h4 id="create-an-alert-filter">Create an Alert Filter</h4>
+<p>Alert Filters can be used to prevent known false positives from raising the same alert in the future.</p>
+<p><img align="right" alt="alert-filter" src="/assets/operation_center/alerts/alert-filter.png" /></p>
+<p>You can create an Alert Filter for the rule that triggered the alert by following these steps: </p>
+<ul>
+<li>On the <code>alert</code>page, go to <code>events</code> tab </li>
+<li>Click on <code>Toggle value selection</code> button in the upper right of the logs list</li>
+<li>Select <code>values</code> you want to filter by clicking on them in the logs list</li>
+<li>Click on the button <code>Create an Alert filter</code> as shown in the screenshot</li>
+<li>As the modal appears, fill in the <code>name</code> of the alert filter (mandatory)</li>
+<li>Provide a <code>description</code> (optional)</li>
+<li>The filter's pattern is automatically created from selected values.</li>
+<li>Click on <code>Add</code> to add this alert filter to the rule that triggered this alert</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>By default, <code>Reject the Alert</code> is selected by default to automatically reject the alert after creating the Alert Filter.</p>
+</div>
+<h4 id="search-events-with-this-value">Search Events with this value</h4>
+<p>The "Search Events with this value" feature can be used to perform a search into all events that occurred during the alert's timeframe (+- 1 hour).</p>
+<p><img align="right" alt="search-events" src="/assets/operation_center/alerts/search-events.png" /></p>
+<p>The search query is automatically created from selected values. </p>
+<p>To search events with a value: </p>
+<ul>
+<li>On the <code>alert</code>page, go to <code>events</code> tab </li>
+<li>Click on <code>Toggle value selection</code> button in the upper right of the logs list</li>
+<li>Select <code>values</code> you want to search for by clicking on them in the logs list</li>
+<li>Click on the button <code>Perform a search</code> as shown in the screenshot</li>
+</ul>
+<p>A side panel opens with the search results, allowing you to investigate an alert without leaving the page.</p>
+<h3 id="graph-investigation">Graph Investigation</h3>
+<p>The Graph Tab is presenting the analyst with a graphical visualization of the Alert.</p>
+<p><img alt="graph" src="/assets/operation_center/alerts/alert-graph.png" style="max-width:100%" /></p>
+<p>The following items appear on the graph:</p>
+<ul>
+<li><code>Observables</code>: these are automatically extracted from events (IP addresses, Domain Names, URLs, User Account, etc.)</li>
+<li><code>Observable Relationships</code>: relationships between observables are represented by arrows linking them on the graph. Relationships are extracted from events using the <a href="https://github.com/SEKOIA-IO/Community/tree/main/events">Smart Description</a> definitions</li>
+<li><code>CTI Objects</code>: STIX objects from the Intelligence Center that provide additional context</li>
+<li><code>STIX relationships</code> between Threat Objects</li>
+</ul>
+<p><strong>Threat Intelligence</strong></p>
+<p>You can access Threat Intelligence by clicking on any CTI object on the graph. The left panel will display its description and lists all known relationships. Related objects can then be added on the graph to pivot into the Threat Intelligence database.</p>
+<p><strong>Observables</strong></p>
+<p>You can access Observable Details by clicking on any Observable on the graph. The left panel will display all events inside the alert related to this observable, with their “Smart Description”. Full Events can be accessed into the right side panel by clicking on "Full Events". It is also possible to <a href="#search-events-with-this-value">Search events with this value</a> by clicking on the button next to the name of the observable.</p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright 2022 SEKOIA. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/sekoia_io" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.top", "content.code.annotate"], "search": "../../../../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.5cf534bf.min.js"></script>
+      
+        <script src="../../../../javascript/sekoiaio.js"></script>
+      
+        <script src="../../../../javascript/lightgallery.min.js"></script>
+      
+        <script src="../../../../javascript/hotjar.js"></script>
+      
+    
+  </body>
+</html>

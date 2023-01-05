@@ -1,4 +1,6 @@
-# Welcome to SEKOIA.IO!
+# Overview
+
+### Welcome to SEKOIA.IO! <a href="#welcome-to-sekoiaio" id="welcome-to-sekoiaio"></a>
 
 SEKOIA.IO seeks to make cyberattacks painless. We connect the dots and empower every cybersecurity team worldwide to neutralize threats before impact.
 
@@ -16,4 +18,4 @@ This documentation platform is made to guide you through the different features 
 
 If you are interested in our products, contact us to plan a demo by filling out [this form](https://www.sekoia.io/en/contact/).
 
-<mark style="background-color:yellow;">If you don't find what you're looking for in this documentation, feel free to contact us at support@sekoia.io or send us a ticket at</mark> [<mark style="background-color:yellow;">support.sekoia.io</mark>](https://support.sekoia.io)<mark style="background-color:yellow;">.</mark>
+If you don't find what you're looking for in this documentation, feel free to contact us at support@sekoia.io or send us a ticket at [support.sekoia.io](https://support.sekoia.io/).
